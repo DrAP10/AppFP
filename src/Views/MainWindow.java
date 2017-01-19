@@ -10,12 +10,13 @@ package Views;
  * @author Juan Antonio
  */
 public class MainWindow extends javax.swing.JFrame {
-
+    private AddItemsFormView addItemsFormView;
     /**
      * Creates new form mainWindow
      */
     public MainWindow() {
         initComponents();
+        addItemsFormView = new AddItemsFormView(this, true);
     }
 
     /**
@@ -28,8 +29,8 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addTransacionButton = new javax.swing.JButton();
+        caracteristicasButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,17 +38,17 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("App Puntos Función");
 
-        jButton1.setText("Añadir Transacción");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addTransacionButton.setText("Añadir Transacción");
+        addTransacionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addTransacionButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Características Generales");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        caracteristicasButton.setText("Características Generales");
+        caracteristicasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                caracteristicasButtonActionPerformed(evt);
             }
         });
 
@@ -57,9 +58,9 @@ public class MainWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addComponent(jButton1)
+                .addComponent(addTransacionButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(caracteristicasButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
         );
@@ -70,21 +71,23 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(addTransacionButton)
+                    .addComponent(caracteristicasButton))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addTransacionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTransacionButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        addItemsFormView.setVisible(true);
+        
+    }//GEN-LAST:event_addTransacionButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void caracteristicasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caracteristicasButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_caracteristicasButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,8 +128,8 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addTransacionButton;
+    private javax.swing.JButton caracteristicasButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
