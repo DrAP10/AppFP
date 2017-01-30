@@ -22,6 +22,8 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
 
     private int total = 0, temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, temp6 = 0, temp7 = 0, temp8 = 0, temp9 = 0,
             temp10 = 0, temp11 = 0, temp12 = 0, temp13 = 0, temp14 = 0;
+    
+    private Integer[] valores = new Integer[14];
 
     /**
      * Creates new form GeneralAdjustmentFormView
@@ -419,7 +421,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // Evento del botón Cancelar
-        System.exit(0);
+        this.hide();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
@@ -436,6 +438,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp1 = valor;
+            valores[0] = valor;
 
         } else if (jComboBox2.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox2.getSelectedItem());
@@ -448,6 +451,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp2 = valor;
+            valores[1] = valor;
 
         } else if (jComboBox3.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox3.getSelectedItem());
@@ -460,6 +464,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp3 = valor;
+            valores[2] = valor;
 
         } else if (jComboBox4.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox4.getSelectedItem());
@@ -472,6 +477,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp4 = valor;
+            valores[3] = valor;
 
         } else if (jComboBox5.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox5.getSelectedItem());
@@ -484,6 +490,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp5 = valor;
+            valores[4] = valor;
 
         } else if (jComboBox6.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox6.getSelectedItem());
@@ -496,6 +503,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp6 = valor;
+            valores[5] = valor;
 
         } else if (jComboBox7.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox7.getSelectedItem());
@@ -508,6 +516,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp7 = valor;
+            valores[6] = valor;
 
         } else if (jComboBox8.isFocusOwner()) {
            valor = Integer.parseInt((String) jComboBox8.getSelectedItem());
@@ -520,6 +529,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp8 = valor;
+            valores[7] = valor;
 
         } else if (jComboBox9.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox9.getSelectedItem());
@@ -532,6 +542,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp9 = valor;
+            valores[8] = valor;
 
         } else if (jComboBox10.isFocusOwner()) {
            valor = Integer.parseInt((String) jComboBox10.getSelectedItem());
@@ -544,6 +555,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp10 = valor;
+            valores[9] = valor;
 
         } else if (jComboBox11.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox11.getSelectedItem());
@@ -556,6 +568,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp11 = valor;
+            valores[10] = valor;
 
         } else if (jComboBox12.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox12.getSelectedItem());
@@ -568,6 +581,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp12 = valor;
+            valores[11] = valor;
 
         } else if (jComboBox13.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox13.getSelectedItem());
@@ -580,6 +594,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp13 = valor;
+            valores[12] = valor;
 
         } else if (jComboBox14.isFocusOwner()) {
             valor = Integer.parseInt((String) jComboBox14.getSelectedItem());
@@ -592,6 +607,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
             }
             
             temp14 = valor;
+            valores[13] = valor;
         }
 
         totaljLabel.setText(String.valueOf(total));
@@ -600,6 +616,11 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
     
     public int getTotal(){
         return Integer.parseInt(totaljLabel.getText());
+    }
+    
+    
+    public Integer[] getValores(){
+        return valores;
     }
     
     /**
