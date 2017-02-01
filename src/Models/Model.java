@@ -5,15 +5,19 @@
  */
 package Models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author DrAP
  */
 public class Model {
     private GeneralAdjustment generalAdjustment;
+    private ArrayList<Transaction> transactions;
 
     public Model() {
         this.generalAdjustment = new GeneralAdjustment();
+        this.transactions = new ArrayList<Transaction>();
     }
 
     public void setAdjustment(int value, int index) {
@@ -23,4 +27,8 @@ public class Model {
     public int getTotalAdjustment() {
         return generalAdjustment.getTotalAdjustment();
     }  
+    
+    public void addTransaction(Transaction transaction){
+        transactions.add(transaction);
+    }
 }

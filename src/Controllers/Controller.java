@@ -10,6 +10,7 @@ import Views.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +37,30 @@ public class Controller {
                 mainWindow.generalAdjustmentFormView.labelTotal.setText(String.valueOf(model.getTotalAdjustment()));
             }
         };
+        addComboBoxsActionListners();
+        
+        mainWindow.setTransactionFormOutVisible(false);
+        mainWindow.addTransactionFormView.comboBoxTransactionType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean visible = ((JComboBox)e.getSource()).getSelectedItem().toString().equals("CE");
+                mainWindow.setTransactionFormOutVisible(visible);
+            }
+        });
+        
+        mainWindow.addTransactionFormView.addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!mainWindow.isTransactionValid()) {
+                    JOptionPane.showMessageDialog(null, "Los campos no pueden estar vacios", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                model.addTransaction(mainWindow.getTransaction());
+            }
+        });
+    }
+
+    private void addComboBoxsActionListners() {
         mainWindow.generalAdjustmentFormView.jComboBox1.addActionListener(comboBoxActionListener);
         mainWindow.generalAdjustmentFormView.jComboBox2.addActionListener(comboBoxActionListener);
         mainWindow.generalAdjustmentFormView.jComboBox3.addActionListener(comboBoxActionListener);

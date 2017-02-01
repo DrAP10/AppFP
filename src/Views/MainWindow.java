@@ -6,6 +6,8 @@
 package Views;
 
 import Controllers.Controller;
+import Models.Transaction;
+import Models.TransactionType;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -20,6 +22,7 @@ public class MainWindow extends javax.swing.JFrame {
     public GeneralAdjustmentForm generalAdjustmentFormView;
     private JTable tabla;
     private DefaultTableModel dtm;
+    private boolean transactionFormOutVisible;
     
     /**
      * Creates new form mainWindow
@@ -32,14 +35,71 @@ public class MainWindow extends javax.swing.JFrame {
         
         inicializarComponentes();
     }
+    public Transaction getTransaction(){
+        TransactionType type;
+        switch (addTransactionFormView.comboBoxTransactionType.getSelectedIndex()) {
+            case 0:
+                type = TransactionType.EE;
+                break;
+            case 1:
+                type = TransactionType.SE;
+                break;
+            case 2:
+                type = TransactionType.CE;
+                break;
+            case 3:
+                type = TransactionType.GLI;
+                break;
+            case 4:
+                type = TransactionType.GLE;
+                break;
+            default:
+                type = TransactionType.EE;
+        }
+        Transaction t;
+        if (getTransactionFormOutVisible()) {
+             t = new Transaction(type,
+                    addTransactionFormView.textFieldDenominacion.getText(), 
+                    Integer.valueOf(addTransactionFormView.textFieldNumFiles.getText()), 
+                    Integer.valueOf(addTransactionFormView.textFieldNumFilesSalida.getText()), 
+                    Integer.valueOf(addTransactionFormView.textFieldNumData.getText()),
+                    Integer.valueOf(addTransactionFormView.textFieldNumDataSalida.getText()));
+        } else {
+            t = new Transaction(type,
+                    addTransactionFormView.textFieldDenominacion.getText(), 
+                    Integer.valueOf(addTransactionFormView.textFieldNumFiles.getText()), 
+                    Integer.valueOf(addTransactionFormView.textFieldNumData.getText()));
+        }
+        return t;
+    }
+    
+    public boolean isTransactionValid(){
+        if (getTransactionFormOutVisible()) {
+            return !(addTransactionFormView.textFieldDenominacion.getText().equals("")
+                    || addTransactionFormView.textFieldNumData.getText().equals("")
+                    || addTransactionFormView.textFieldNumFilesSalida.getText().equals("")
+                    || addTransactionFormView.textFieldNumDataSalida.getText().equals("")
+                    || addTransactionFormView.textFieldNumFiles.getText().equals(""));
+        } else {
+            return !(addTransactionFormView.textFieldDenominacion.getText().equals("")
+                    || addTransactionFormView.textFieldNumData.getText().equals("")
+                    || addTransactionFormView.textFieldNumFiles.getText().equals(""));
+        }
+    }
+    public void setTransactionFormOutVisible(boolean visible) {
+        transactionFormOutVisible = visible;
+        this.addTransactionFormView.numDataSalidaLabel.setVisible(visible);
+        this.addTransactionFormView.numFilesSalidaLabel.setVisible(visible);
+        this.addTransactionFormView.textFieldNumDataSalida.setVisible(visible);
+        this.addTransactionFormView.textFieldNumFilesSalida.setVisible(visible);
+    }
+    
+    public boolean getTransactionFormOutVisible(){
+            return transactionFormOutVisible;
+    }
     
     private void inicializarComponentes() {
         // configuramos los componentes
-
-        String tipo[] = {"", "EE", "SE", "CE", "GLI", "GLE"}; // opciones del tipo de transaccion
-        for (int i = 0; i < tipo.length; i++) {
-            addTransactionFormView.transactionChoice.add(tipo[i]);
-        }
 
         dtm = new DefaultTableModel();
         tabla = this.jTable;

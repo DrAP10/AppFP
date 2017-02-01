@@ -35,7 +35,6 @@ public class AddTransactionForm extends javax.swing.JDialog {
         textFieldDenominacion = new java.awt.TextField();
         denominacionLabel = new javax.swing.JLabel();
         transactionLabel = new javax.swing.JLabel();
-        transactionChoice = new java.awt.Choice();
         numFilesLabel = new javax.swing.JLabel();
         textFieldNumFiles = new java.awt.TextField();
         textFieldNumData = new java.awt.TextField();
@@ -47,6 +46,7 @@ public class AddTransactionForm extends javax.swing.JDialog {
         textFieldNumDataSalida = new java.awt.TextField();
         textFieldNumFilesSalida = new java.awt.TextField();
         numDataSalidaLabel = new javax.swing.JLabel();
+        comboBoxTransactionType = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,11 +91,6 @@ public class AddTransactionForm extends javax.swing.JDialog {
 
         addButton.setBackground(new java.awt.Color(51, 204, 0));
         addButton.setText("Grabar");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
-            }
-        });
 
         cancelButton.setBackground(new java.awt.Color(255, 51, 51));
         cancelButton.setText("Cancelar");
@@ -129,6 +124,13 @@ public class AddTransactionForm extends javax.swing.JDialog {
         numDataSalidaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numDataSalidaLabel.setText("Número de Datos Elementales (Salida)");
 
+        comboBoxTransactionType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EE", "SE", "CE", "GLI", "GLE" }));
+        comboBoxTransactionType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxTransactionTypeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -158,7 +160,7 @@ public class AddTransactionForm extends javax.swing.JDialog {
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                                 .addComponent(transactionLabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(transactionChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(comboBoxTransactionType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(numFilesLabel)))
                                     .addGap(59, 59, 59)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,22 +187,21 @@ public class AddTransactionForm extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(denominacionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldDenominacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(transactionChoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(transactionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(transactionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxTransactionType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(numFilesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4))
+                        .addComponent(numDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(textFieldNumFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFieldNumData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(numFilesSalidaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldNumFilesSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -238,14 +239,6 @@ public class AddTransactionForm extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // Evento del botón grabar
-
-        if (transactionChoice.getSelectedItem().equals("") || textFieldDenominacion.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Los campos no pueden estar vacios", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_addButtonActionPerformed
-
     private void textFieldNumDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNumDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldNumDataActionPerformed
@@ -266,9 +259,14 @@ public class AddTransactionForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldNumFilesSalidaActionPerformed
 
+    private void comboBoxTransactionTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTransactionTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxTransactionTypeActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton addButton;
     public javax.swing.JButton cancelButton;
+    public javax.swing.JComboBox<String> comboBoxTransactionType;
     private javax.swing.JLabel denominacionLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel numDataLabel;
@@ -282,7 +280,6 @@ public class AddTransactionForm extends javax.swing.JDialog {
     public java.awt.TextField textFieldNumFiles;
     public java.awt.TextField textFieldNumFilesSalida;
     private javax.swing.JLabel titleLabel;
-    public java.awt.Choice transactionChoice;
     private javax.swing.JLabel transactionLabel;
     // End of variables declaration//GEN-END:variables
 }

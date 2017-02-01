@@ -69,7 +69,7 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="transactionLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="transactionChoice" min="-2" pref="55" max="-2" attributes="0"/>
+                                                  <Component id="comboBoxTransactionType" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="numFilesLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                           </Group>
@@ -111,18 +111,17 @@
                       <Component id="denominacionLabel" alignment="0" max="32767" attributes="0"/>
                       <Component id="textFieldDenominacion" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="transactionChoice" alignment="0" max="32767" attributes="0"/>
-                      <Component id="transactionLabel" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="transactionLabel" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="comboBoxTransactionType" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="numFilesLabel" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="numDataLabel" min="-2" pref="20" max="-2" attributes="0"/>
-                          <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="textFieldNumFiles" min="-2" max="-2" attributes="0"/>
@@ -130,7 +129,7 @@
                           <Component id="textFieldNumData" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="numFilesSalidaLabel" alignment="0" max="32767" attributes="0"/>
                       <Component id="textFieldNumFilesSalida" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -190,11 +189,6 @@
             <Property name="text" type="java.lang.String" value="Tipo de Transacci&#xf3;n"/>
           </Properties>
         </Component>
-        <Component class="java.awt.Choice" name="transactionChoice">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JLabel" name="numFilesLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -246,9 +240,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Grabar"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
@@ -319,6 +310,26 @@
             <Property name="text" type="java.lang.String" value="N&#xfa;mero de Datos Elementales (Salida)"/>
           </Properties>
           <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="comboBoxTransactionType">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="EE"/>
+                <StringItem index="1" value="SE"/>
+                <StringItem index="2" value="CE"/>
+                <StringItem index="3" value="GLI"/>
+                <StringItem index="4" value="GLE"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxTransactionTypeActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>

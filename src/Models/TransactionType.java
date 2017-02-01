@@ -7,8 +7,8 @@ package Models;
 
 /**
  *
- * @author Juan Antonio
+ * @author drap
  */
-public class Transactions {
-    
+public enum TransactionType {
+    EE, SE, CE, GLI, GLE
 }
