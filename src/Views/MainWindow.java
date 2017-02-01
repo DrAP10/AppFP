@@ -6,14 +6,20 @@
 package Views;
 
 import Controllers.Controller;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Juan Antonio
  */
 public class MainWindow extends javax.swing.JFrame {
-    public AddItemsFormView addItemsFormView;
+    public AddTransactionForm addTransactionFormView;
     public GeneralAdjustmentForm generalAdjustmentFormView;
+    private JTable tabla;
+    private DefaultTableModel dtm;
     
     /**
      * Creates new form mainWindow
@@ -21,8 +27,62 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         
-        addItemsFormView = new AddItemsFormView(this, true);
+        addTransactionFormView = new AddTransactionForm(this, true);
         generalAdjustmentFormView = new GeneralAdjustmentForm(this, true);
+        
+        inicializarComponentes();
+    }
+    
+    private void inicializarComponentes() {
+        // configuramos los componentes
+
+        String tipo[] = {"", "EE", "SE", "CE", "GLI", "GLE"}; // opciones del tipo de transaccion
+        for (int i = 0; i < tipo.length; i++) {
+            addTransactionFormView.transactionChoice.add(tipo[i]);
+        }
+
+        dtm = new DefaultTableModel();
+        tabla = this.jTable;
+        tabla.setModel(dtm);
+        String columNames[] = {"EE", "SE", "CE", "GLI", "GLE"};
+        dtm.setColumnIdentifiers(new Object[]{"Descripción", "Sencilla", "Media", "Compleja", "Total PF"});
+        dtm.setNumRows(5);
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            dtm.setValueAt(columNames[i], i, 0);
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer(); //alinear al centro 
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < dtm.getColumnCount(); i++) {
+            tabla.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
+        
+        //Sencillas
+        dtm.setValueAt(" x 3 ", 0, 1);
+        dtm.setValueAt(" x 4 ", 1, 1);
+        dtm.setValueAt(" x 7 ", 2, 1);
+        dtm.setValueAt(" x 5 ", 3, 1);
+        dtm.setValueAt(" x 3 ", 4, 1);
+
+        //Media
+        dtm.setValueAt(" x 4 ", 0, 2);
+        dtm.setValueAt(" x 5 ", 1, 2);
+        dtm.setValueAt(" x 10 ", 2, 2);
+        dtm.setValueAt(" x 7 ", 3, 2);
+        dtm.setValueAt(" x 4", 4, 2);
+
+        //Compleja
+        dtm.setValueAt(" x 6 ", 0, 3);
+        dtm.setValueAt(" x 7 ", 1, 3);
+        dtm.setValueAt(" x 15 ", 2, 3);
+        dtm.setValueAt(" x 10 ", 3, 3);
+        dtm.setValueAt(" x 6 ", 4, 3);
+
+        //Totales PF
+        dtm.setValueAt("  ", 0, 4);
+        dtm.setValueAt("  ", 1, 4);
+        dtm.setValueAt("  ", 2, 4);
+        dtm.setValueAt("  ", 3, 4);
+        dtm.setValueAt("  ", 4, 4);
     }
 
     /**
@@ -38,6 +98,12 @@ public class MainWindow extends javax.swing.JFrame {
         addTransacionButton = new javax.swing.JButton();
         caracteristicasButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
+        resumeLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        pfnajLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,21 +135,62 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(jTable);
+
+        jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
+
+        resumeLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        resumeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        resumeLabel.setText("Resumen");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("TOTAL PUNTOS FUNCIÓN NO AJUSTADOS (PFNA)");
+
+        pfnajLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(addTransacionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(caracteristicasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(addTransacionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(caracteristicasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pfnajLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(resumeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(128, 128, 128))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,8 +202,18 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(addTransacionButton)
                     .addComponent(caracteristicasButton))
                 .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resumeLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(pfnajLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(jButton1)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -104,7 +221,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void addTransacionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTransacionButtonActionPerformed
         // Botón para abrir la ventana del form de añadir funcionalidad
-        addItemsFormView.setVisible(true);
+        addTransactionFormView.setVisible(true);
         
     }//GEN-LAST:event_addTransacionButtonActionPerformed
 
@@ -162,5 +279,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton caracteristicasButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable;
+    private javax.swing.JLabel pfnajLabel;
+    private javax.swing.JLabel resumeLabel;
     // End of variables declaration//GEN-END:variables
 }
