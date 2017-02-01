@@ -32,8 +32,8 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 int value = Integer.valueOf(((JComboBox)e.getSource()).getSelectedItem().toString());
                 int index = Integer.valueOf(e.getActionCommand());
-                model.generalAdjustment.setAdjustment(value, index);
-                mainWindow.generalAdjustmentFormView.labelTotal.setText(String.valueOf(model.generalAdjustment.getTotalAdjustment()));
+                model.setAdjustment(value, index);
+                mainWindow.generalAdjustmentFormView.labelTotal.setText(String.valueOf(model.getTotalAdjustment()));
             }
         };
         mainWindow.generalAdjustmentFormView.jComboBox1.addActionListener(comboBoxActionListener);

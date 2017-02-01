@@ -5,10 +5,6 @@
  */
 package Views;
 
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -330,7 +326,7 @@ public class AddItemsFormView extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // Evento del botón Cancelar
 
-        this.hide();
+        this.setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**

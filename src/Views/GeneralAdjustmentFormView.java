@@ -421,7 +421,7 @@ public class GeneralAdjustmentFormView extends javax.swing.JFrame {
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // Evento del botón Cancelar
-        this.hide();
+        this.setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed

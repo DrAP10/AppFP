@@ -10,10 +10,17 @@ package Models;
  * @author DrAP
  */
 public class Model {
-    public GeneralAdjustment generalAdjustment;
+    private GeneralAdjustment generalAdjustment;
 
     public Model() {
         this.generalAdjustment = new GeneralAdjustment();
     }
-    
+
+    public void setAdjustment(int value, int index) {
+        generalAdjustment.setAdjustment(value, index);
+    }
+
+    public int getTotalAdjustment() {
+        return generalAdjustment.getTotalAdjustment();
+    }  
 }
