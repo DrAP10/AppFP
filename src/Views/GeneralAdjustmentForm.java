@@ -67,23 +67,22 @@ public class GeneralAdjustmentForm extends javax.swing.JDialog {
         jLabel14 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         addButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         labelTotal = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
-        jComboBox2 = new javax.swing.JComboBox<String>();
-        jComboBox3 = new javax.swing.JComboBox<String>();
-        jComboBox4 = new javax.swing.JComboBox<String>();
-        jComboBox5 = new javax.swing.JComboBox<String>();
-        jComboBox6 = new javax.swing.JComboBox<String>();
-        jComboBox7 = new javax.swing.JComboBox<String>();
-        jComboBox8 = new javax.swing.JComboBox<String>();
-        jComboBox9 = new javax.swing.JComboBox<String>();
-        jComboBox10 = new javax.swing.JComboBox<String>();
-        jComboBox11 = new javax.swing.JComboBox<String>();
-        jComboBox12 = new javax.swing.JComboBox<String>();
-        jComboBox13 = new javax.swing.JComboBox<String>();
-        jComboBox14 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jComboBox6 = new javax.swing.JComboBox<>();
+        jComboBox7 = new javax.swing.JComboBox<>();
+        jComboBox8 = new javax.swing.JComboBox<>();
+        jComboBox9 = new javax.swing.JComboBox<>();
+        jComboBox10 = new javax.swing.JComboBox<>();
+        jComboBox11 = new javax.swing.JComboBox<>();
+        jComboBox12 = new javax.swing.JComboBox<>();
+        jComboBox13 = new javax.swing.JComboBox<>();
+        jComboBox14 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -136,18 +135,10 @@ public class GeneralAdjustmentForm extends javax.swing.JDialog {
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
 
         addButton.setBackground(new java.awt.Color(51, 204, 0));
-        addButton.setText("Grabar");
+        addButton.setText("OK");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
-            }
-        });
-
-        cancelButton.setBackground(new java.awt.Color(255, 51, 51));
-        cancelButton.setText("Cancelar");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
             }
         });
 
@@ -195,17 +186,6 @@ public class GeneralAdjustmentForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(addButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cancelButton))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -261,7 +241,15 @@ public class GeneralAdjustmentForm extends javax.swing.JDialog {
                                             .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -331,11 +319,9 @@ public class GeneralAdjustmentForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton)
-                    .addComponent(cancelButton))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(addButton)
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -343,16 +329,11 @@ public class GeneralAdjustmentForm extends javax.swing.JDialog {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // Evento del botón grabar
-    }//GEN-LAST:event_addButtonActionPerformed
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // Evento del botón Cancelar
         this.setVisible(false);
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }//GEN-LAST:event_addButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JButton cancelButton;
     public javax.swing.JComboBox<String> jComboBox1;
     public javax.swing.JComboBox<String> jComboBox10;
     public javax.swing.JComboBox<String> jComboBox11;

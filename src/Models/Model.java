@@ -12,8 +12,11 @@ import java.util.ArrayList;
  * @author DrAP
  */
 public class Model {
+
     private GeneralAdjustment generalAdjustment;
     private ArrayList<Transaction> transactions;
+    private double fA; //Factor de Ajuste
+    private double pA; //Puntos Función Ajustados
 
     public Model() {
         this.generalAdjustment = new GeneralAdjustment();
@@ -26,9 +29,20 @@ public class Model {
 
     public int getTotalAdjustment() {
         return generalAdjustment.getTotalAdjustment();
-    }  
-    
-    public void addTransaction(Transaction transaction){
+    }
+
+    public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
     }
+
+    public double CalculateFA() {
+        this.fA = (generalAdjustment.getTotalAdjustment() * 0.01) + 0.65;
+        return this.fA;
+    }
+
+    public double CalculatePA() {
+        double valor = this.fA ;
+        return valor;
+    }
+
 }

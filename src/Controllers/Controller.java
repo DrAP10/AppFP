@@ -37,6 +37,7 @@ public class Controller {
                 mainWindow.generalAdjustmentFormView.labelTotal.setText(String.valueOf(model.getTotalAdjustment()));
             }
         };
+        
         addComboBoxsActionListners();
         
         mainWindow.setTransactionFormOutVisible(false);
@@ -56,6 +57,10 @@ public class Controller {
                     return;
                 }
                 model.addTransaction(mainWindow.getTransaction());
+                double fA = model.CalculateFA();
+                mainWindow.fAjLabel.setText(String.valueOf(fA));
+                double pA = model.CalculatePA();
+                mainWindow.pAjLabel.setText(String.valueOf(pA));
             }
         });
     }
