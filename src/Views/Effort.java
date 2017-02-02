@@ -5,11 +5,18 @@
  */
 package Views;
 
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Juan Antonio
  */
 public class Effort extends javax.swing.JDialog {
+
+    private JTable tabla;
 
     /**
      * Creates new form Effort
@@ -17,6 +24,18 @@ public class Effort extends javax.swing.JDialog {
     public Effort(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        inicializarComponentes();
+        
+    }
+    
+    private void inicializarComponentes() {
+        // configuramos los componentes
+        tabla = this.jTable1;
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer(); //alinear al centro 
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < tabla.getColumnCount(); i++) {
+            tabla.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
     }
 
     /**
@@ -29,7 +48,11 @@ public class Effort extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false; //Disallow the editing of any cell
+            }
+        };
         titleLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -62,6 +85,7 @@ public class Effort extends javax.swing.JDialog {
             }
         ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setFocusable(false);
         jScrollPane1.setViewportView(jTable1);
 
         titleLabel.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
@@ -155,7 +179,7 @@ public class Effort extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

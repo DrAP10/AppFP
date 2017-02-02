@@ -91,6 +91,8 @@ public class Controller {
         mainWindow.fAjLabel.setText(String.valueOf(model.getFa()));
         mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
         mainWindow.pfnajLabel.setText(String.valueOf(model.getFpna()));
+        mainWindow.esfuerzojLabel.setText("");
+        mainWindow.duracionjLabel.setText("");
         mainWindow.updateTable(model.getMatrizComplejidad());
     }
      /**
