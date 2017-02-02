@@ -5,8 +5,6 @@
  */
 package Views;
 
-import Controllers.Controller;
-
 /**
  *
  * @author DrAP
