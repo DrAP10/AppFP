@@ -35,6 +35,9 @@ public class Controller {
                 int index = Integer.valueOf(e.getActionCommand());
                 model.setAdjustment(value, index);
                 mainWindow.generalAdjustmentFormView.labelTotal.setText(String.valueOf(model.getTotalAdjustment()));
+                model.updateFA();
+                mainWindow.fAjLabel.setText(String.valueOf(model.getFa()));
+                mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
             }
         };
         
@@ -57,10 +60,9 @@ public class Controller {
                     return;
                 }
                 model.addTransaction(mainWindow.getTransaction());
-                double fA = model.CalculateFA();
-                mainWindow.fAjLabel.setText(String.valueOf(fA));
-                double pA = model.CalculatePA();
-                mainWindow.pAjLabel.setText(String.valueOf(pA));
+                mainWindow.updateTable(model.getMatrizComplejidad());
+                mainWindow.pfnajLabel.setText(String.valueOf(model.getFpna()));
+                mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
             }
         });
     }
@@ -85,6 +87,11 @@ public class Controller {
     public void iniciar(){
         mainWindow.setVisible(true);
         mainWindow.setLocationRelativeTo(null);
+        model.updateFA();
+        mainWindow.fAjLabel.setText(String.valueOf(model.getFa()));
+        mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
+        mainWindow.pfnajLabel.setText(String.valueOf(model.getFpna()));
+        mainWindow.updateTable(model.getMatrizComplejidad());
     }
      /**
      * @param args the command line arguments

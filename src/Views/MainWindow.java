@@ -112,36 +112,42 @@ public class MainWindow extends javax.swing.JFrame {
         for (int i = 0; i < dtm.getColumnCount(); i++) {
             tabla.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
-        
-        //Sencillas
-        dtm.setValueAt(" x 3 ", 0, 1);
-        dtm.setValueAt(" x 4 ", 1, 1);
-        dtm.setValueAt(" x 7 ", 2, 1);
-        dtm.setValueAt(" x 5 ", 3, 1);
-        dtm.setValueAt(" x 3 ", 4, 1);
-
-        //Media
-        dtm.setValueAt(" x 4 ", 0, 2);
-        dtm.setValueAt(" x 5 ", 1, 2);
-        dtm.setValueAt(" x 10 ", 2, 2);
-        dtm.setValueAt(" x 7 ", 3, 2);
-        dtm.setValueAt(" x 4", 4, 2);
-
-        //Compleja
-        dtm.setValueAt(" x 6 ", 0, 3);
-        dtm.setValueAt(" x 7 ", 1, 3);
-        dtm.setValueAt(" x 15 ", 2, 3);
-        dtm.setValueAt(" x 10 ", 3, 3);
-        dtm.setValueAt(" x 6 ", 4, 3);
-
-        //Totales PF
-        dtm.setValueAt("  ", 0, 4);
-        dtm.setValueAt("  ", 1, 4);
-        dtm.setValueAt("  ", 2, 4);
-        dtm.setValueAt("  ", 3, 4);
-        dtm.setValueAt("  ", 4, 4);
     }
 
+    /**
+     * 
+     * @param m Matriz de complejidad
+     */
+    public void updateTable(int[][] m){
+        //Sencillas
+        dtm.setValueAt(m[0][0]+" x 3 ", 0, 1);
+        dtm.setValueAt(m[1][0]+" x 4 ", 1, 1);
+        dtm.setValueAt(m[2][0]+" x 7 ", 2, 1);
+        dtm.setValueAt(m[3][0]+" x 5 ", 3, 1);
+        dtm.setValueAt(m[4][0]+" x 3 ", 4, 1);
+
+        //Media
+        dtm.setValueAt(m[0][1]+" x 4 ", 0, 2);
+        dtm.setValueAt(m[1][1]+" x 5 ", 1, 2);
+        dtm.setValueAt(m[2][1]+" x 10 ", 2, 2);
+        dtm.setValueAt(m[3][1]+" x 7 ", 3, 2);
+        dtm.setValueAt(m[4][1]+" x 4", 4, 2);
+
+        //Compleja
+        dtm.setValueAt(m[0][2]+" x 6 ", 0, 3);
+        dtm.setValueAt(m[1][2]+" x 7 ", 1, 3);
+        dtm.setValueAt(m[2][2]+" x 15 ", 2, 3);
+        dtm.setValueAt(m[3][2]+" x 10 ", 3, 3);
+        dtm.setValueAt(m[4][2]+" x 6 ", 4, 3);
+
+        //Totales PF
+        dtm.setValueAt(String.valueOf(m[0][0]*3+m[0][1]*4+m[0][2]*6), 0, 4);
+        dtm.setValueAt(String.valueOf(m[1][0]*4+m[1][1]*5+m[1][2]*7), 1, 4);
+        dtm.setValueAt(String.valueOf(m[2][0]*7+m[2][1]*10+m[2][2]*15), 2, 4);
+        dtm.setValueAt(String.valueOf(m[3][0]*5+m[3][1]*7+m[3][2]*10), 3, 4);
+        dtm.setValueAt(String.valueOf(m[4][0]*3+m[4][1]*4+m[4][2]*6), 4, 4);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -268,8 +274,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pAjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pfnajLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fAjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(fAjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -377,7 +382,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable;
     public javax.swing.JLabel pAjLabel;
-    private javax.swing.JLabel pfnajLabel;
+    public javax.swing.JLabel pfnajLabel;
     private javax.swing.JLabel resumeLabel;
     // End of variables declaration//GEN-END:variables
 }
