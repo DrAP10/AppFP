@@ -5,11 +5,17 @@
  */
 package Views;
 
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+
 /**
  *
  * @author Juan Antonio
  */
 public class Duration extends javax.swing.JDialog {
+
+    private JTable tabla;
 
     /**
      * Creates new form Duration
@@ -17,6 +23,18 @@ public class Duration extends javax.swing.JDialog {
     public Duration(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        inicializarComponentes();
+
+    }
+
+    private void inicializarComponentes() {
+        // configuramos los componentes
+        tabla = this.jTable1;
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer(); //alinear al centro 
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < tabla.getColumnCount(); i++) {
+            tabla.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
     }
 
     /**
@@ -30,7 +48,11 @@ public class Duration extends javax.swing.JDialog {
 
         titleLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false; //Disallow the editing of any cell
+            }
+        };
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -55,6 +77,7 @@ public class Duration extends javax.swing.JDialog {
             }
         ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setFocusable(false);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setBackground(new java.awt.Color(51, 204, 0));
@@ -113,16 +136,24 @@ public class Duration extends javax.swing.JDialog {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Duration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Duration.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Duration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Duration.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Duration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Duration.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Duration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Duration.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
