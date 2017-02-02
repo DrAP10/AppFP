@@ -26,11 +26,11 @@ public class Model {
         matrizComplejidad = new int[5][3];
         for (int row = 0; row < matrizComplejidad.length; row++) {
             for (int col = 0; col < matrizComplejidad[row].length; col++) {
-                matrizComplejidad[row][col]=0;
+                matrizComplejidad[row][col] = 0;
             }
         }
-        fpna=0;
-        fp=0;
+        fpna = 0;
+        fp = 0;
     }
 
     public void setAdjustment(int value, int index) {
@@ -47,46 +47,51 @@ public class Model {
     }
 
     private void updateMatrizComplejidad(Transaction transaction) {
-        switch (transaction.getType()){
+        switch (transaction.getType()) {
             case EE:
-                if(transaction.getComplexity()==Complexity.Sencilla)
+                if (transaction.getComplexity() == Complexity.Sencilla) {
                     matrizComplejidad[0][0]++;
-                else if(transaction.getComplexity()==Complexity.Media)
+                } else if (transaction.getComplexity() == Complexity.Media) {
                     matrizComplejidad[0][1]++;
-                else
+                } else {
                     matrizComplejidad[0][2]++;
+                }
                 break;
             case SE:
-                if(transaction.getComplexity()==Complexity.Sencilla)
+                if (transaction.getComplexity() == Complexity.Sencilla) {
                     matrizComplejidad[1][0]++;
-                else if(transaction.getComplexity()==Complexity.Media)
+                } else if (transaction.getComplexity() == Complexity.Media) {
                     matrizComplejidad[1][1]++;
-                else
+                } else {
                     matrizComplejidad[1][2]++;
+                }
                 break;
             case CE:
-                if(transaction.getComplexity()==Complexity.Sencilla)
+                if (transaction.getComplexity() == Complexity.Sencilla) {
                     matrizComplejidad[2][0]++;
-                else if(transaction.getComplexity()==Complexity.Media)
+                } else if (transaction.getComplexity() == Complexity.Media) {
                     matrizComplejidad[2][1]++;
-                else
+                } else {
                     matrizComplejidad[2][2]++;
+                }
                 break;
             case GLI:
-                if(transaction.getComplexity()==Complexity.Sencilla)
+                if (transaction.getComplexity() == Complexity.Sencilla) {
                     matrizComplejidad[3][0]++;
-                else if(transaction.getComplexity()==Complexity.Media)
+                } else if (transaction.getComplexity() == Complexity.Media) {
                     matrizComplejidad[3][1]++;
-                else
+                } else {
                     matrizComplejidad[3][2]++;
+                }
                 break;
             case GLE:
-                if(transaction.getComplexity()==Complexity.Sencilla)
+                if (transaction.getComplexity() == Complexity.Sencilla) {
                     matrizComplejidad[4][0]++;
-                else if(transaction.getComplexity()==Complexity.Media)
+                } else if (transaction.getComplexity() == Complexity.Media) {
                     matrizComplejidad[4][1]++;
-                else
+                } else {
                     matrizComplejidad[4][2]++;
+                }
                 break;
         }
         updateFPNA();
@@ -104,7 +109,7 @@ public class Model {
     public void updateFP() {
         this.fp = this.fa * this.fpna;
     }
-    
+
     public void updateFPNA() {
         int[][] m = this.matrizComplejidad;
         this.fpna = m[0][0] * 3 + m[0][1] * 4 + m[0][2] * 6
