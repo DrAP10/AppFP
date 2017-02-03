@@ -1,37 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
 import Models.*;
 import Views.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Juan Antonio
- */
 public class Controller {
+
     //VIEW
     MainWindow mainWindow;
     //MODEL
     Model model;
-    
+
     ActionListener comboBoxActionListener;
 
     public Controller(MainWindow mainWindow, Model model) {
         this.mainWindow = mainWindow;
         this.model = model;
-        comboBoxActionListener=new ActionListener() {
 
+        comboBoxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int value = Integer.valueOf(((JComboBox)e.getSource()).getSelectedItem().toString());
+                int value = Integer.valueOf(((JComboBox) e.getSource()).getSelectedItem().toString());
                 int index = Integer.valueOf(e.getActionCommand());
                 model.setAdjustment(value, index);
                 mainWindow.generalAdjustmentFormView.labelTotal.setText(String.valueOf(model.getTotalAdjustment()));
@@ -40,18 +34,19 @@ public class Controller {
                 mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
             }
         };
+   
         
         addComboBoxsActionListners();
-        
+
         mainWindow.setTransactionFormOutVisible(false);
         mainWindow.addTransactionFormView.comboBoxTransactionType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean visible = ((JComboBox)e.getSource()).getSelectedItem().toString().equals("CE");
+                boolean visible = ((JComboBox) e.getSource()).getSelectedItem().toString().equals("CE");
                 mainWindow.setTransactionFormOutVisible(visible);
             }
         });
-        
+
         mainWindow.addTransactionFormView.addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,25 +78,26 @@ public class Controller {
         mainWindow.generalAdjustmentFormView.jComboBox13.addActionListener(comboBoxActionListener);
         mainWindow.generalAdjustmentFormView.jComboBox14.addActionListener(comboBoxActionListener);
     }
-    
-    public void iniciar(){
+
+    public void iniciar() {
         mainWindow.setVisible(true);
         mainWindow.setLocationRelativeTo(null);
         model.updateFA();
         mainWindow.fAjLabel.setText(String.valueOf(model.getFa()));
         mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
         mainWindow.pfnajLabel.setText(String.valueOf(model.getFpna()));
-        mainWindow.esfuerzojLabel.setText("");
-        mainWindow.duracionjLabel.setText("");
+        mainWindow.esfuerzojLabel.setText(String.valueOf(model.getEffort()));
+        mainWindow.duracionjLabel.setText(String.valueOf(model.getDuration()));
         mainWindow.updateTable(model.getMatrizComplejidad());
     }
-     /**
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         MainWindow mainWindow = new MainWindow();
         Model model = new Model();
         Controller controller = new Controller(mainWindow, model);
-        controller.iniciar();        
+        controller.iniciar();
     }
 }
