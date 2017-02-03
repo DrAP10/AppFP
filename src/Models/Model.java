@@ -24,10 +24,13 @@ public class Model {
         }
         fpna = 0;
         fp = 0;
+        effort = 0; cEffort = 0; eEffort = 0;
+        duration = 0; cDuration = 0; eDuration = 0;
     }
 
     public void setAdjustment(int value, int index) {
         generalAdjustment.setAdjustment(value, index);
+        updateFA();
     }
 
     public int getTotalAdjustment() {
@@ -96,30 +99,38 @@ public class Model {
 
     public void updateFA() {
         this.fa = calcularFA();
+        updateFP();
     }
 
     public void updateFP() {
         this.fp = calcularFP();
+        updateDuration();
+        updateEffort();
     }
 
     public void updateFPNA() {
         this.fpna = calcularFPNA();
+        updateFP();
     }
 
-    public void updateDuration() {
+    private void updateDuration() {
+        this.duration = this.cDuration * Math.pow(this.fp, eDuration);
+    }
+    
+    public void updateDuration(double c, double e) {
+        this.cDuration = c;
+        this.eDuration = e;
         this.duration = this.cDuration * Math.pow(this.fp, eDuration);
     }
 
-    public void updateEffort() {
+    private void updateEffort() {
         this.effort = this.cEffort * Math.pow(this.fp, eEffort);
     }
-
-    public void setCduration(double c) {
-        this.cDuration = c;
-    }
-
-    public void setEduration(double e) {
-        this.eDuration = e;
+    
+    public void updateEffort(double c, double e) {
+        this.cEffort = c;
+        this.eEffort = e;
+        this.effort = this.cEffort * Math.pow(this.fp, eEffort);
     }
 
     public double getFa() {
@@ -139,8 +150,6 @@ public class Model {
     }
     
     public double calcularFP() {
-        updateFA();
-        updateFPNA();
         return fa * fpna;
     }
     

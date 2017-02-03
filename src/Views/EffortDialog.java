@@ -1,26 +1,31 @@
+
 package Views;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import Interfaces.Observable;
+import Interfaces.Observer;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class Duration extends javax.swing.JDialog {
 
-    public JTable tabla;
-    private String c, e;
+public class EffortDialog extends javax.swing.JDialog implements Observable{
+
+    private JTable tabla;
+    private Double c, e;
+    private ArrayList<Observer> observers;
 
     /**
-     * Creates new form Duration
+     * Creates new form Effort
      */
-    public Duration(java.awt.Frame parent, boolean modal) {
+    public EffortDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        observers = new ArrayList<>();
         inicializarComponentes();
-
+        
     }
-
+    
     private void inicializarComponentes() {
         // configuramos los componentes
         tabla = this.jTable1;
@@ -28,6 +33,10 @@ public class Duration extends javax.swing.JDialog {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i = 0; i < tabla.getColumnCount(); i++) {
             tabla.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
+        for(int i = 0; i < tabla.getRowCount(); i++) {
+            tabla.setValueAt(tabla.getValueAt(i, 2).toString().replace(',', '.'), i, 2);
+            tabla.setValueAt(tabla.getValueAt(i, 3).toString().replace(',', '.'), i, 3);
         }
     }
 
@@ -40,31 +49,38 @@ public class Duration extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false; //Disallow the editing of any cell
             }
         };
+        titleLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        titleLabel.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Colecciones de datos isbsg. Duracion");
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "PC", "0,503", "0,409"},
-                {"2", "Multi", "0,679", "0,341"},
-                {"3", "4GL", "0,578", "0,393"},
-                {"4", "Nuevo", "0,739", "0,359"},
-                {"5", "PC - 4GL", "0,348", "0,971"},
-                {"6", "Multi - 4GL", "0,366", "0,451"},
-                {"7", "PC - 4GL - Nuevo", "0,250", "0,515"},
-                {"8", "Multi - 4GL - Nuevo", "0,240", "0,518"}
+                {"1", "MF", "49,02", "0,736"},
+                {"2", "MR", "78,88", "0,646"},
+                {"3", "PC", "48,90", "0,661"},
+                {"4", "Multi", "16,01", "0,865"},
+                {"5", "3GL", "54,65", "0,717"},
+                {"6", "4GL", "29,50", "0,758"},
+                {"7", "GenAp", "68,11", "0,660"},
+                {"8", "Mantenimiento", "52,58", "0,683"},
+                {"9", "Nuevo", "39,05", "0,731"},
+                {"10", "MF - 3GL", "65,37", "0,705"},
+                {"11", "MF - 4GL ", "52,09", "0,640"},
+                {"12", "MF - GenAp", "65,68", "0,692"},
+                {"13", "MR - 3GL", "126,3", "0,565"},
+                {"14", "MR - 4GL", "62,35", "0,694"},
+                {"15", "PC -3GL", "60,46", "0,648"},
+                {"16", "PC - 4GL", "36,48", "0,694"},
+                {"17", "Multi - 3GL", "19,82", "0,666"},
+                {"18", "Multi - 4GL", "6,49", "0,983"},
+                {"19", "MF - 3GL - Mantenimeinto", "83,27", "0,650"}
             },
             new String [] {
                 "", "Características", "C", "E"
@@ -78,6 +94,10 @@ public class Duration extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+
+        titleLabel.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Colecciones de datos isbsg. Esfuerzo");
 
         jButton1.setBackground(new java.awt.Color(51, 204, 0));
         jButton1.setText("OK");
@@ -94,8 +114,8 @@ public class Duration extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
-                    .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)))
@@ -106,11 +126,11 @@ public class Duration extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -123,72 +143,38 @@ public class Duration extends javax.swing.JDialog {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int row = tabla.getSelectedRow();
-        this.c = tabla.getValueAt(row, 2).toString();
-        this.e = tabla.getValueAt(row, 3).toString();
+        this.c = Double.valueOf(tabla.getValueAt(row, 2).toString());
+        this.e = Double.valueOf(tabla.getValueAt(row, 3).toString());
+        notifyObservers();
     }//GEN-LAST:event_jTable1MouseClicked
-
-    public String getC(){
-        return this.c;
-    }
-    
-    public String getE(){
-        return this.e;
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Duration.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Duration.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Duration.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Duration.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Duration dialog = new Duration(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
+
+    public Double getC() {
+        return c;
+    }
+
+    public Double getE() {
+        return e;
+    }
+
+    
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(int i=0;i<observers.size();i++){
+            observers.get(i).actualizarEsfuerzo(c, e);
+        }
+    }
+    
+    
 }

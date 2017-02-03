@@ -1,7 +1,6 @@
 
 package Views;
 
-import Controllers.Controller;
 import Models.Transaction;
 import Models.TransactionType;
 import javax.swing.JTable;
@@ -13,8 +12,8 @@ import javax.swing.table.DefaultTableModel;
 public class MainWindow extends javax.swing.JFrame {
     public AddTransactionForm addTransactionFormView;
     public GeneralAdjustmentForm generalAdjustmentFormView;
-    public Duration duration;
-    public Effort effort;
+    public DurationDialog duration;
+    public EffortDialog effort;
     private JTable tabla;
     private DefaultTableModel dtm;
     private boolean transactionFormOutVisible;
@@ -26,8 +25,8 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         addTransactionFormView = new AddTransactionForm(this, true);
         generalAdjustmentFormView = new GeneralAdjustmentForm(this, true);
-        duration = new Duration(this, true);
-        effort = new Effort(this, true);
+        duration = new DurationDialog(this, true);
+        effort = new EffortDialog(this, true);
         inicializarComponentes();
     }
     

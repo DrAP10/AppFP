@@ -1,15 +1,14 @@
 package Controllers;
 
+import Interfaces.Observer;
 import Models.*;
 import Views.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-public class Controller {
+public class Controller implements Observer{
 
     //VIEW
     MainWindow mainWindow;
@@ -28,14 +27,9 @@ public class Controller {
                 int value = Integer.valueOf(((JComboBox) e.getSource()).getSelectedItem().toString());
                 int index = Integer.valueOf(e.getActionCommand());
                 model.setAdjustment(value, index);
-                mainWindow.generalAdjustmentFormView.labelTotal.setText(String.valueOf(model.getTotalAdjustment()));
-                model.updateFA();
-                mainWindow.fAjLabel.setText(String.valueOf(model.getFa()));
-                mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
+                actualizarVista();
             }
         };
-   
-        
         addComboBoxsActionListners();
 
         mainWindow.setTransactionFormOutVisible(false);
@@ -55,11 +49,12 @@ public class Controller {
                     return;
                 }
                 model.addTransaction(mainWindow.getTransaction());
-                mainWindow.updateTable(model.getMatrizComplejidad());
-                mainWindow.pfnajLabel.setText(String.valueOf(model.getFpna()));
-                mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
+                actualizarVista();
             }
         });
+        
+        mainWindow.effort.addObserver(this);
+        mainWindow.duration.addObserver(this);
     }
 
     private void addComboBoxsActionListners() {
@@ -90,6 +85,16 @@ public class Controller {
         mainWindow.duracionjLabel.setText(String.valueOf(model.getDuration()));
         mainWindow.updateTable(model.getMatrizComplejidad());
     }
+    
+    public void actualizarVista() {
+        mainWindow.updateTable(model.getMatrizComplejidad());
+        mainWindow.pfnajLabel.setText(String.valueOf(model.getFpna()));
+        mainWindow.generalAdjustmentFormView.labelTotal.setText(String.valueOf(model.getTotalAdjustment()));
+        mainWindow.fAjLabel.setText(String.valueOf(model.getFa()));
+        mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
+        mainWindow.esfuerzojLabel.setText(String.valueOf(model.getEffort()));
+        mainWindow.duracionjLabel.setText(String.valueOf(model.getDuration()));
+    }
 
     /**
      * @param args the command line arguments
@@ -99,5 +104,17 @@ public class Controller {
         Model model = new Model();
         Controller controller = new Controller(mainWindow, model);
         controller.iniciar();
+    }
+
+    @Override
+    public void actualizarDuracion(double c, double e) {
+        model.updateDuration(c, e);
+        mainWindow.duracionjLabel.setText(String.valueOf(model.getDuration()));
+    }
+
+    @Override
+    public void actualizarEsfuerzo(double c, double e) {
+        model.updateEffort(c, e);
+        mainWindow.esfuerzojLabel.setText(String.valueOf(model.getEffort()));
     }
 }
