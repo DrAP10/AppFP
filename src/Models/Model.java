@@ -97,22 +97,15 @@ public class Model {
     }
 
     public void updateFA() {
-        this.fa = (generalAdjustment.getTotalAdjustment() * 0.01) + 0.65;
-        updateFP();
+        this.fa = calcularFA();
     }
 
     public void updateFP() {
-        this.fp = this.fa * this.fpna;
+        this.fp = calcularFP();
     }
     
     public void updateFPNA() {
-        int[][] m = this.matrizComplejidad;
-        this.fpna = m[0][0] * 3 + m[0][1] * 4 + m[0][2] * 6
-                + m[1][0] * 4 + m[1][1] * 5 + m[1][2] * 7
-                + m[2][0] * 7 + m[2][1] * 10 + m[2][2] * 15
-                + m[3][0] * 5 + m[3][1] * 7 + m[3][2] * 10
-                + m[4][0] * 3 + m[4][1] * 4 + m[4][2] * 6;
-        updateFP();
+        this.fpna = calcularFPNA();
     }
 
     public double getFa() {
@@ -125,5 +118,24 @@ public class Model {
 
     public double getFpna() {
         return fpna;
+    }
+    
+    public double calcularFA() {
+        return (generalAdjustment.getTotalAdjustment() * 0.01) + 0.65;
+    }
+    
+    public double calcularFP() {
+        updateFA();
+        updateFPNA();
+        return fa * fpna;
+    }
+    
+    public double calcularFPNA() {
+        int[][] m = matrizComplejidad;
+        return m[0][0] * 3 + m[0][1] * 4 + m[0][2] * 6
+                + m[1][0] * 4 + m[1][1] * 5 + m[1][2] * 7
+                + m[2][0] * 7 + m[2][1] * 10 + m[2][2] * 15
+                + m[3][0] * 5 + m[3][1] * 7 + m[3][2] * 10
+                + m[4][0] * 3 + m[4][1] * 4 + m[4][2] * 6;
     }
 }
