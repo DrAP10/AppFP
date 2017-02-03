@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Models;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author DrAP
- */
 public class Model {
 
     private GeneralAdjustment generalAdjustment;
@@ -19,6 +10,8 @@ public class Model {
     private double fa; //Factor de Ajuste
     private double fp; //Puntos Función Ajustados
     private double fpna; //Puntos Función no Ajustados
+    private double duration, cDuration, eDuration; //Estimación de duración, y variables para factores de calibrado
+    private double effort, cEffort, eEffort; //Estimación del esfuerzo, y variables para factores de calibrado
 
     public Model() {
         this.generalAdjustment = new GeneralAdjustment();
@@ -29,6 +22,7 @@ public class Model {
                 matrizComplejidad[row][col] = 0;
             }
         }
+
         fpna = 0;
         fp = 0;
     }
@@ -120,15 +114,39 @@ public class Model {
         updateFP();
     }
 
+    public void updateDuration() {
+        this.duration = this.cDuration * Math.pow(this.fp, eDuration);
+    }
+
+    public void updateEffort() {
+        this.effort = this.cEffort * Math.pow(this.fp, eEffort);
+    }
+
+    public void setCduration(double c) {
+        this.cDuration = c;
+    }
+
+    public void setEduration(double e) {
+        this.eDuration = e;
+    }
+
     public double getFa() {
-        return fa;
+        return this.fa;
     }
 
     public double getFp() {
-        return fp;
+        return this.fp;
     }
 
     public double getFpna() {
-        return fpna;
+        return this.fpna;
+    }
+
+    public double getDuration() {
+        return this.duration;
+    }
+
+    public double getEffort() {
+        return this.effort;
     }
 }

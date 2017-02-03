@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Views;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
-/**
- *
- * @author Juan Antonio
- */
 public class Duration extends javax.swing.JDialog {
 
-    private JTable tabla;
+    public JTable tabla;
+    private String c, e;
 
     /**
      * Creates new form Duration
@@ -78,6 +72,11 @@ public class Duration extends javax.swing.JDialog {
         ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.setFocusable(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setBackground(new java.awt.Color(51, 204, 0));
@@ -122,6 +121,20 @@ public class Duration extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = tabla.getSelectedRow();
+        this.c = tabla.getValueAt(row, 2).toString();
+        this.e = tabla.getValueAt(row, 3).toString();
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    public String getC(){
+        return this.c;
+    }
+    
+    public String getE(){
+        return this.e;
+    }
+    
     /**
      * @param args the command line arguments
      */

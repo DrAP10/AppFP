@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Views;
 
 import javax.swing.JTable;
@@ -10,10 +6,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Juan Antonio
- */
+
 public class Effort extends javax.swing.JDialog {
 
     private JTable tabla;
