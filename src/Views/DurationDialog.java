@@ -3,7 +3,6 @@ package Views;
 import Interfaces.Observable;
 import Interfaces.Observer;
 import java.util.ArrayList;
-import javafx.beans.InvalidationListener;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
