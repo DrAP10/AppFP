@@ -23,18 +23,12 @@ public class ModelTest {
     
     @BeforeClass
     public static void setUpClass() {
+        System.out.println("-----Model Test-----");
     }
     
     @AfterClass
     public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        System.out.println("--------------------");
     }
     
     @Test
@@ -85,4 +79,37 @@ public class ModelTest {
         assertEquals(expResult, result, 0.0);
     }
     
+    @Test
+    public void testCalcularEffort() {
+        System.out.println("Calcular Effort");
+        Model instance = new Model();
+        instance.setAdjustment(5, 0);
+        instance.setAdjustment(3, 1);
+        instance.setAdjustment(2, 2);
+        instance.addTransaction(new Transaction(TransactionType.EE, "name", 5, 3));
+        instance.addTransaction(new Transaction(TransactionType.GLE, "name", 5, 3));
+        instance.addTransaction(new Transaction(TransactionType.SE, "name", 1, 1));
+        instance.addTransaction(new Transaction(TransactionType.CE, "name", 5, 3, 7, 10));
+        instance.updateEffort(48.90, 0.661);
+        double expResult = 348.354;
+        double result = instance.calcularEffort();
+        assertEquals(expResult, result, 0.001);
+    }
+    
+    @Test
+    public void testCalcularDuration() {
+        System.out.println("Calcular Duration");
+        Model instance = new Model();
+        instance.setAdjustment(5, 0);
+        instance.setAdjustment(3, 1);
+        instance.setAdjustment(2, 2);
+        instance.addTransaction(new Transaction(TransactionType.EE, "name", 5, 3));
+        instance.addTransaction(new Transaction(TransactionType.GLE, "name", 5, 3));
+        instance.addTransaction(new Transaction(TransactionType.SE, "name", 1, 1));
+        instance.addTransaction(new Transaction(TransactionType.CE, "name", 5, 3, 7, 10));
+        instance.updateDuration(0.503, 0.409);
+        double expResult = 1.695;
+        double result = instance.CalcularDuration();
+        assertEquals(expResult, result, 0.001);
+    }
 }

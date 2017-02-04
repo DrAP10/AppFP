@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
+import Interfaces.Observer;
 import Models.*;
 import Views.*;
 import java.awt.event.ActionEvent;
@@ -12,46 +8,39 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Juan Antonio
- */
-public class Controller {
+public class Controller implements Observer{
+
     //VIEW
     MainWindow mainWindow;
     //MODEL
     Model model;
-    
+
     ActionListener comboBoxActionListener;
 
     public Controller(MainWindow mainWindow, Model model) {
         this.mainWindow = mainWindow;
         this.model = model;
-        comboBoxActionListener=new ActionListener() {
 
+        comboBoxActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int value = Integer.valueOf(((JComboBox)e.getSource()).getSelectedItem().toString());
+                int value = Integer.valueOf(((JComboBox) e.getSource()).getSelectedItem().toString());
                 int index = Integer.valueOf(e.getActionCommand());
                 model.setAdjustment(value, index);
-                mainWindow.generalAdjustmentFormView.labelTotal.setText(String.valueOf(model.getTotalAdjustment()));
-                model.updateFA();
-                mainWindow.fAjLabel.setText(String.valueOf(model.getFa()));
-                mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
+                actualizarVista();
             }
         };
-        
         addComboBoxsActionListners();
-        
+
         mainWindow.setTransactionFormOutVisible(false);
         mainWindow.addTransactionFormView.comboBoxTransactionType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean visible = ((JComboBox)e.getSource()).getSelectedItem().toString().equals("CE");
+                boolean visible = ((JComboBox) e.getSource()).getSelectedItem().toString().equals("CE");
                 mainWindow.setTransactionFormOutVisible(visible);
             }
         });
-        
+
         mainWindow.addTransactionFormView.addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,11 +49,12 @@ public class Controller {
                     return;
                 }
                 model.addTransaction(mainWindow.getTransaction());
-                mainWindow.updateTable(model.getMatrizComplejidad());
-                mainWindow.pfnajLabel.setText(String.valueOf(model.getFpna()));
-                mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
+                actualizarVista();
             }
         });
+        
+        mainWindow.effort.addObserver(this);
+        mainWindow.duration.addObserver(this);
     }
 
     private void addComboBoxsActionListners() {
@@ -83,23 +73,48 @@ public class Controller {
         mainWindow.generalAdjustmentFormView.jComboBox13.addActionListener(comboBoxActionListener);
         mainWindow.generalAdjustmentFormView.jComboBox14.addActionListener(comboBoxActionListener);
     }
-    
-    public void iniciar(){
+
+    public void iniciar() {
         mainWindow.setVisible(true);
         mainWindow.setLocationRelativeTo(null);
         model.updateFA();
         mainWindow.fAjLabel.setText(String.valueOf(model.getFa()));
         mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
         mainWindow.pfnajLabel.setText(String.valueOf(model.getFpna()));
+        mainWindow.esfuerzojLabel.setText(String.valueOf(model.getEffort()));
+        mainWindow.duracionjLabel.setText(String.valueOf(model.getDuration()));
         mainWindow.updateTable(model.getMatrizComplejidad());
     }
-     /**
+    
+    public void actualizarVista() {
+        mainWindow.updateTable(model.getMatrizComplejidad());
+        mainWindow.pfnajLabel.setText(String.valueOf(model.getFpna()));
+        mainWindow.generalAdjustmentFormView.labelTotal.setText(String.valueOf(model.getTotalAdjustment()));
+        mainWindow.fAjLabel.setText(String.valueOf(model.getFa()));
+        mainWindow.pAjLabel.setText(String.valueOf(model.getFp()));
+        mainWindow.esfuerzojLabel.setText(String.valueOf(model.getEffort()));
+        mainWindow.duracionjLabel.setText(String.valueOf(model.getDuration()));
+    }
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         MainWindow mainWindow = new MainWindow();
         Model model = new Model();
         Controller controller = new Controller(mainWindow, model);
-        controller.iniciar();        
+        controller.iniciar();
+    }
+
+    @Override
+    public void actualizarDuracion(double c, double e) {
+        model.updateDuration(c, e);
+        mainWindow.duracionjLabel.setText(String.valueOf(model.getDuration()));
+    }
+
+    @Override
+    public void actualizarEsfuerzo(double c, double e) {
+        model.updateEffort(c, e);
+        mainWindow.esfuerzojLabel.setText(String.valueOf(model.getEffort()));
     }
 }
