@@ -114,23 +114,23 @@ public class Model {
     }
 
     private void updateDuration() {
-        this.duration = this.cDuration * Math.pow(this.fp, eDuration);
+        this.duration = CalcularDuration();
     }
     
     public void updateDuration(double c, double e) {
         this.cDuration = c;
         this.eDuration = e;
-        this.duration = this.cDuration * Math.pow(this.fp, eDuration);
+        this.duration = CalcularDuration();
     }
 
     private void updateEffort() {
-        this.effort = this.cEffort * Math.pow(this.fp, eEffort);
+        this.effort = calcularEffort();
     }
     
     public void updateEffort(double c, double e) {
         this.cEffort = c;
         this.eEffort = e;
-        this.effort = this.cEffort * Math.pow(this.fp, eEffort);
+        this.effort = calcularEffort();
     }
 
     public double getFa() {
@@ -160,6 +160,14 @@ public class Model {
                 + m[2][0] * 7 + m[2][1] * 10 + m[2][2] * 15
                 + m[3][0] * 5 + m[3][1] * 7 + m[3][2] * 10
                 + m[4][0] * 3 + m[4][1] * 4 + m[4][2] * 6;
+    }
+    
+    public double CalcularDuration(){
+        return this.cDuration * Math.pow(this.fp, eDuration);
+    }
+    
+    public double calcularEffort(){
+        return this.cEffort * Math.pow(this.fp, eEffort);
     }
 
     public double getDuration() {
